@@ -1,0 +1,30 @@
+@host = localhost:8080
+
+// Create Document
+POST http://{{host}}/documents HTTP/1.1
+content-type: application/json
+    
+{
+    "name": "test-product",
+    "description": "random-description"
+}
+###
+// Get Document By ID
+GET http://{{host}}/documents/23 HTTP/1.1
+content-type: application/json
+###
+// Get All Documents
+GET http://{{host}}/documents/ HTTP/1.1
+content-type: application/json
+###
+// Update Product
+PUT http://{{host}}/documents/23 HTTP/1.1
+content-type: application/json
+{
+    "name": "updated-product",
+    "description": "random-description-updated",
+}
+###
+// Delete Product
+DELETE http://{{host}}/documents/23 HTTP/1.1
+content-type: application/json

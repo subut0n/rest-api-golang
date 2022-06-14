@@ -1,0 +1,31 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/app.dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/vade-tt
+    depends_on:
+      - database
+    container_name: vade-tt-api
+    environment:
+      - 'DB_PORT=3306'
+      - 'DB_HOST=database'
+
+  database:
+    platform: linux/x86_64
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: documents
+    container_name: vade-tt-db
+    ports:
+      - 33066:3306
+    volumes:
+      - vade-tt-data:/var/lib/mysql 
+
+volumes:
+  vade-tt-data:
